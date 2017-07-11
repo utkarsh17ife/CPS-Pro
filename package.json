@@ -1,0 +1,16 @@
+{
+  "name": "cps",
+  "version": "1.0.0",
+  "description": "work for masters",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "team of masters",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1"
+  }
+}
