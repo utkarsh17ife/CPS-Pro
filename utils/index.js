@@ -1,4 +1,4 @@
 module.exports = {
     securityUtil: require('./security.util'),
-    userUtil: require('./userUtil')
+    userUtil: require('./user.util')
 }

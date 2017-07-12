@@ -9,8 +9,10 @@
   "author": "team of masters",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
-    "jsonwebtoken": "^7.4.1"
+    "jsonwebtoken": "^7.4.1",
+    "pg": "^6.4.0"
   }
 }

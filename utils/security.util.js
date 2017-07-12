@@ -1,13 +1,5 @@
-var bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
-
-
-
-
-
-
-
 
 
 //crate JWT tokens here
@@ -64,7 +56,9 @@ let comparePassword = function(password, userPassword) {
 
 
 /*Functions to be exported*/
-exports = module.exports ={
+module.exports ={
     
-    
+
+
+
 }
