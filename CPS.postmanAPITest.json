@@ -1,0 +1,77 @@
+{
+	"id": "fe49a81d-d119-71c4-c353-1b8f82a1d935",
+	"name": "CPS",
+	"description": "",
+	"order": [
+		"2b511ef5-9214-3405-bca6-3c70cecd3692",
+		"d9d49931-5a06-7a96-5b57-7ea9cce652ea"
+	],
+	"folders": [],
+	"timestamp": 1500819067937,
+	"owner": "575902",
+	"public": false,
+	"requests": [
+		{
+			"id": "2b511ef5-9214-3405-bca6-3c70cecd3692",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3000/user/signup",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "fe49a81d-d119-71c4-c353-1b8f82a1d935",
+			"data": [],
+			"dataMode": "raw",
+			"name": "SignUp",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1500819092553,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n\t\"userName\": \"ut\",\n\t\"userPassword\": \"1234\",\n\t\"phone\" : 9887766123,\n\t\"email\": \"ut@ut.com\",\n\t\"firmName\": \"ut\"\n}"
+		},
+		{
+			"id": "d9d49931-5a06-7a96-5b57-7ea9cce652ea",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3000/item/save",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "fe49a81d-d119-71c4-c353-1b8f82a1d935",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Save item",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1500819780782,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\r\n    \"itemCode\": \"itm1001\",\r\n    \"itemCategory\": \"Pipe\",\r\n    \"itemSubCategory\": \"PS\",\r\n    \"itemName\": \"SomeCreativeName\",\r\n    \"itemVariables\": [\r\n        {\"attributeName\": \"Brand\", \"attributeValue\": [\"Jindal\", \"Tata\"]},\r\n        {\"attributeName\": \"Size\", \"attributeValue\": [22, 23, 24]},\r\n        {\"attributeName\": \"Class\", \"attributeValue\": [\"A\", \"B\", \"C\"]}\r\n        ],\r\n    \"itemDesc\": \"adffadsfasdfasdfasdfadf\",\r\n    \"firmName\": \"ut\"\r\n}"
+		}
+	]
+}

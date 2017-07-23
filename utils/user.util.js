@@ -1,41 +1,50 @@
-const { dbUtil } = require('../endpoint');
+const { mongoUtil } = require('../endpoint');
+const { userCollection } = require('../const').collections;
 
 
 
 
+let signUp = (userData) => {
 
-let getAllUsers=()=>{
-
-
-    let getAllUsersQuery = 'SELECT userID, UserName FROM public.users';
- 
-
-    return new Promise((resolve, reject)=>{
-
-
-        dbUtil.query(getAllUsersQuery,[], (e, result)=>{
-
-            if(e) reject(e);
-        
-            return resolve(result);
-
-        });
-
-
-    });
-
-
+    return new Promise((resolve, reject) => {
+        //collection name depends on the firm name
+        let collection = userData.firmName + "_" + userCollection;
+        mongoUtil.insert(collection, userData)
+            .then(result => {
+                return resolve({ message: "SignUp done" })
+            })
+            .catch(err => {
+                return reject({ message: "SignUp failed" })
+            })
+    })
 
 }
 
 
+let userNameAvailability = (userName, firmName)=>{
+    return new Promise((resolve, reject)=>{
+        let collection = firmName + "_" + userCollection;
+        mongoUtil.getByQuery(collection, {userName: userName})
+        .then(result=>{
+            if(result.length == 0)
+                return resolve({message: "UserName Available"});
+            
+            return reject({message: "UserName Taken, Please try other Username"});
+        })
+        .catch(err=>{
+            if(err.message === "DB get Failed")
+                return reject({message: "DB Error: Failed to fetch transaction data from DB"}) 
+
+            return reject(err);
+        })   
+    })
+};
 
 
+module.exports = {
 
+    signUp,
+    userNameAvailability
 
-
-module.exports={
-
-    getAllUsers
 
 }

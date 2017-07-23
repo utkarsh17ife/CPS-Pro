@@ -1,4 +1,4 @@
 module.exports = {
-    dbUtil: require('./db.util')
+    mongoUtil: require('./db.util')
 };
 

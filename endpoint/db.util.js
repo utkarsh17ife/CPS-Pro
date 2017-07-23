@@ -1,49 +1,89 @@
-const { dbConn } = require('../const');
-
-//DB connection and queries
-const pg = require('pg');
-
+const MongoClient = require('mongodb').MongoClient;
+const { mongoUrl } = require('../const');
+var db;
 
 
-var connectionString = dbConn;
+let connectToMongoDB = () => {
+  return new Promise((resolve, reject) => {
+    MongoClient.connect(mongoUrl, function (err, dbInstance) {
+      if (err) return reject({ Error: "MongoDB" });
+      db = dbInstance;
+      return resolve();
+    })
+  })
+}
 
 
-var config = {
-  user: 'PGUSER', 
-  database: 'postgres', 
-  password: '12345', 
-  host: 'localhost',  
-  port: 5432,  
-  max: 10, 
-  idleTimeoutMillis: 30000, 
+
+let isConnected = () => {
+  if (db) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+
+
+
+let getAll = (collectionName, cb) => {
+  return new Promise((resolve, reject) => {
+    let collection = db.collection(collectionName);
+    collection.find({}).toArray((err, result) => {
+      if (err) return reject({ message: "DB getAll Failed" });
+      return resolve(result);
+    })
+  })
 };
 
 
-const pool = new pg.Pool(config);
 
 
-let query =(text, values, cb) =>{
+let getByQuery = (collectionName, query) => {
+  return new Promise((resolve, reject) => {
+    let collection = db.collection(collectionName);
+    collection.find(query).toArray((err, result) => {
+      if (err) return reject({ message: "DB get Failed" });
+      return resolve(result);
+    })
+  })
+}
 
-  console.log('query:', text, values);
-
-  return pool.query(text, values, callback);
 
 
+let insert = (collectionName, data) => {
+  return new Promise((resolve, reject) => {
+    let collection = db.collection(collectionName);
+    collection.insert(data, (err, result) => {
+      if (err) return reject({ message: "DB Insert Failed" });
+      return resolve({ message: "Data Inserted" });
+    })
+  })
 };
 
 
 
-let connect =(cb) =>{
-  
-  return pool.connect(cb);
 
+let update = (collectionName, query, udpateData) => {
+  return new Promise((resolve, reject) => {
+    let collection = db.collection(collectionName);
+    collection.update(query, udpateData, (err, result) => {
+      if (err) return reject({ message: "DB update Failed" });
+      return resolve({ message: "Data updated" });
+    })
+  })
 };
-
 
 
 
 
 module.exports = {
-    query,
-    connect
+  connectToMongoDB,
+  isConnected,
+  getAll,
+  getByQuery,
+  insert,
+  update
 }
+

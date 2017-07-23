@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const validator = require('validator'); 
+const saltRounds = 10;
 
 //crate JWT tokens here
 function createToken (details){
@@ -55,10 +56,28 @@ let comparePassword = function(password, userPassword) {
 };
 
 
+
+//SignUp Validator
+let validateSignUp = function(userData) {
+
+    if(!userData.userName || !userData.userPassword ||
+         !userData.phone || !userData.email || !userData.firmName ||
+         validator.isEmpty(userData.userName) || validator.isEmpty(userData.userPassword) ||
+         validator.isEmpty(userData.email) ||
+         validator.isEmpty(userData.firmName) || !validator.isEmail(userData.email)){
+            
+            return false;
+    }
+
+    return true;
+}
+
+
+
+
 /*Functions to be exported*/
-module.exports ={
-    
-
-
-
+module.exports = {
+    encryptPassword,
+    verifyJWT,
+    validateSignUp
 }
