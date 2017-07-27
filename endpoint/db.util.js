@@ -78,12 +78,28 @@ let update = (collectionName, query, udpateData) => {
 
 
 
+let upsert = (collectionName, query, updateData) => {
+  return new Promise((resolve, reject) => {
+    let collection = db.collection(collectionName);
+    //remove the mongoID from object data
+    if(updateData._id) delete updateData._id;
+    collection.update(query, updateData, {upsert: true}, (err, result) => {
+      if (err)
+        return reject({ message: "DB update Failed" });
+        return resolve({ message: "Data updated" });
+    })
+  })
+};
+
+
+
 module.exports = {
   connectToMongoDB,
   isConnected,
   getAll,
   getByQuery,
   insert,
-  update
+  update,
+  upsert
 }
 

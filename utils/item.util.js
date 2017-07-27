@@ -31,14 +31,33 @@ let getAllItems = (firmName) => {
                 return resolve(result);
             })
             .catch(err => {
-                return reject(result);
+                return reject({message: "Failed to fetch items from DB"});
             })
     })
 
 }
 
 
+let updateItem = (itemData) => {
+
+    return new Promise((resolve, reject) => {
+        let collection = itemData.firmName + "_" + itemCollection;
+        mongoUtil.upsert(collection, { itemCode: itemData.itemCode }, itemData)
+            .then(result => {
+                return resolve(result);
+            })
+            .catch(err => {
+                return reject({message: "Failed to update the data in DB"});
+            });
+
+    })
+
+}
+
+
+
 module.exports = {
     saveItem,
-    getAllItems
+    getAllItems,
+    updateItem
 }
