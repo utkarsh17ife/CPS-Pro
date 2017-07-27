@@ -1,11 +1,11 @@
 const MongoClient = require('mongodb').MongoClient;
-const { mongoUrl } = require('../const');
+const { mongoUrlLabs, mongoUrlLocal } = require('../const');
 var db;
 
 
 let connectToMongoDB = () => {
   return new Promise((resolve, reject) => {
-    MongoClient.connect(mongoUrl, function (err, dbInstance) {
+    MongoClient.connect(mongoUrlLabs, function (err, dbInstance) {
       if (err) return reject({ Error: "MongoDB" });
       db = dbInstance;
       return resolve();
