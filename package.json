@@ -2,7 +2,7 @@
   "name": "cps",
   "version": "1.0.0",
   "description": "work for masters",
-  "main": "main.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
