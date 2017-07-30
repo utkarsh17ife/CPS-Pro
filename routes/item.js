@@ -7,13 +7,15 @@ const { securityUtil, itemUtil } = require('../utils');
 router.post('/save', (req, res) => {
 
     let itemData = req.body;
+    itemData.firmName = "CPSDev"; //This will later be extracted from JWT token
+
     if (!itemData)
         res.status(400).send({ message: "Invalid Input" });
 
+    console.log(itemData);
     itemUtil.saveItem(itemData)
         .then(result => {
-
-            return res.status(200).send({ message: "Item Saved" });
+            return res.status(200).send(result);
         })
         .catch(err => {
 

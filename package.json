@@ -15,5 +15,8 @@
     "jsonwebtoken": "^7.4.1",
     "mongodb": "^2.2.30",
     "validator": "^8.0.0"
+  },
+  "devDependencies": {
+    "@angular/cli": "^1.2.6"
   }
 }

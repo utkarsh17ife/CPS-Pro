@@ -32,11 +32,11 @@ router.post('/signup', (req, res) => {
       
         return res.status(200).send(result);
     })
-    // .catch(err=>{
-    //     console.log(JSON.stringify(err));
-    //     err.status = "SignUp Failed";
-    //     return res.status(400).send(err);
-    // });
+    .catch(err=>{
+        console.log(JSON.stringify(err));
+        err.status = "SignUp Failed";
+        return res.status(400).send(err);
+    });
 });
 
 

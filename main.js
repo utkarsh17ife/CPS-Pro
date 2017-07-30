@@ -5,15 +5,21 @@ const https = require('https');
 const { mongoUtil } = require('./endpoint');
 
 
-
+var port = process.env.PORT || 3000;
 
 //Initializing the apps
 const app = express();
-const http_server = http.createServer(app);
+//const http_server = http.createServer(app);
 //const https_server = https.createServer(sslOptions, app);
 
 
-
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
 
 //adding body parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -36,14 +42,11 @@ app.use('/item', item);
 
 
 
-
-
-
 //Connect to DB before starting http server
 mongoUtil.connectToMongoDB()
 .then(result=>{
 
-    http_server.listen(3000, () => {
+    app.listen(port, () => {
         console.log('http up on port 3000');
     });
 
@@ -51,9 +54,9 @@ mongoUtil.connectToMongoDB()
     //     console.log('https up on port 433');
     // });
 })
-// .catch(err=>{
-//     console.log(err);
-// })
+.catch(err=>{
+    console.log(err);
+})
 
 
 

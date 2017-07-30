@@ -5,7 +5,7 @@ var db;
 
 let connectToMongoDB = () => {
   return new Promise((resolve, reject) => {
-    MongoClient.connect(mongoUrlLocal, function (err, dbInstance) {
+    MongoClient.connect(mongoUrlLabs, function (err, dbInstance) {
       if (err) return reject({ Error: "MongoDB" });
       db = dbInstance;
       return resolve();
@@ -53,6 +53,7 @@ let getByQuery = (collectionName, query) => {
 
 
 let insert = (collectionName, data) => {
+  data.timeStamp = Date.now();
   return new Promise((resolve, reject) => {
     let collection = db.collection(collectionName);
     collection.insert(data, (err, result) => {
@@ -82,16 +83,26 @@ let upsert = (collectionName, query, updateData) => {
   return new Promise((resolve, reject) => {
     let collection = db.collection(collectionName);
     //remove the mongoID from object data
-    if(updateData._id) delete updateData._id;
-    collection.update(query, updateData, {upsert: true}, (err, result) => {
+    if (updateData._id) delete updateData._id;
+    collection.update(query, updateData, { upsert: true }, (err, result) => {
       if (err)
         return reject({ message: "DB update Failed" });
-        return resolve({ message: "Data updated" });
+      return resolve({ message: "Data updated" });
     })
   })
 };
 
 
+
+let getLastOneRecordByQuery = (collectionName, query) => {
+  return new Promise((resolve, reject) => {
+    let collection = db.collection(collectionName);
+    collection.find(query).sort({ timeStamp: -1 }).limit(1).toArray((err, result)=>{
+      if (err) return reject({ message: "DB get Failed" });
+      return resolve(result);
+    })
+  })
+}
 
 module.exports = {
   connectToMongoDB,
@@ -100,6 +111,7 @@ module.exports = {
   getByQuery,
   insert,
   update,
-  upsert
+  upsert,
+  getLastOneRecordByQuery
 }
 
