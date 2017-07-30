@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n\n<h1>\n  Welcome to {{title}}!\n\n</h1>\n<nav>\n  <a routerLink=\"/\" routerLinkActive=\"active\">Home</a>\n  <a routerLink=\"/addItem\" routerLinkActive=\"active\">Add Item</a>\n</nav>\n\n<router-outlet></router-outlet>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n\n<h1>\n  Welcome to {{title}}!\n\n</h1>\n<nav>\n  <a routerLink=\"/\" routerLinkActive=\"active\">Home</a>\n  <a routerLink=\"/addItem\" routerLinkActive=\"active\">Add Item</a>\n</nav>\n\n<router-outlet></router-outlet>\n  "
 
 /***/ }),
 
@@ -222,7 +222,7 @@ var AddItemComponent = (function () {
         console.log(newItemData);
         //post the data to the server
         this.cpsService.saveItem(newItemData).subscribe(function (response) {
-            console.log(response);
+            console.log("response: " + JSON.stringify(response));
             _this.router.navigateByUrl('/');
         });
     };
@@ -272,7 +272,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var CpsService = (function () {
     function CpsService(http) {
         this.http = http;
-        this.cpsServerUrl = "http://127.0.0.1:3000/";
+        //this.cpsServerUrl= "http://127.0.0.1:3000/";
+        this.cpsServerUrl = "https://cpspro.herokuapp.com/";
         this.saveItemService = "item/save";
     }
     CpsService.prototype.saveItem = function (body) {
@@ -281,9 +282,7 @@ var CpsService = (function () {
         var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* RequestOptions */]({ headers: headers }); // Create a request option
         console.log(this.cpsServerUrl + this.saveItemService);
         return this.http.post(this.cpsServerUrl + this.saveItemService, body, options) // ...using post request
-            .map(function (res) {
-            res.json(); // ...and calling .json() on the response to return data
-        })
+            .map(function (res) { return res.json(); })
             .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__["Observable"].throw(error.json().error || 'Server error'); }); //...errors if any
     };
     return CpsService;
