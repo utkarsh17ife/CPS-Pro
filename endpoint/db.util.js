@@ -5,7 +5,7 @@ var db;
 
 let connectToMongoDB = () => {
   return new Promise((resolve, reject) => {
-    MongoClient.connect(mongoUrlLocal, function (err, dbInstance) {
+    MongoClient.connect(mongoUrlLabs, function (err, dbInstance) {
       if (err) return reject({ Error: "MongoDB" });
       db = dbInstance;
       return resolve();
