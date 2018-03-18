@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "fe49a81d-d119-71c4-c353-1b8f82a1d935",
+		"name": "CPS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get item",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save item",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"pipe laying\",\n\t\"category\": \"pipe\",\n\t\"description\": \"laying of ms pipe\",\n\t\"shortDescription\": \"ms pipe lay\",\n\t\"variables\": [\"bolt10001\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save rawMaterial",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Bolt 1234\",\n\t\"type\": \"bolt\",\n\t\"unit\": \"meters\",\n\t\"unitType\": \"weight\",\n\t\"properties\": [{\"propName\": \"prop1\", \"propValues\": [\"nigg\"]}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/rawMaterial",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"rawMaterial"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get rawMaterial",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/rawMaterial",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"rawMaterial"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
