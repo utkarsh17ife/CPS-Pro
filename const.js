@@ -4,7 +4,8 @@ module.exports = {
     devLogger: true,
     collections: {
         userCollection: "users",
-        itemCollection: "items"
+        itemCollection: "items",
+        rawMaterialCollection: "rawMaterials"
     }
 };
 

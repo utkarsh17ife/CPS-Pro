@@ -5,7 +5,7 @@ var db;
 
 let connectToMongoDB = () => {
   return new Promise((resolve, reject) => {
-    MongoClient.connect(mongoUrlLabs, function (err, dbInstance) {
+    MongoClient.connect(mongoUrlLocal, function (err, dbInstance) {
       if (err) return reject({ Error: "MongoDB" });
       db = dbInstance;
       return resolve();
@@ -31,7 +31,7 @@ let getAll = (collectionName, cb) => {
   return new Promise((resolve, reject) => {
     let collection = db.collection(collectionName);
     collection.find({}).toArray((err, result) => {
-      if (err) return reject({ message: "DB getAll Failed" });
+      if (err) return reject(err);
       return resolve(result);
     })
   })
@@ -44,7 +44,7 @@ let getByQuery = (collectionName, query) => {
   return new Promise((resolve, reject) => {
     let collection = db.collection(collectionName);
     collection.find(query).toArray((err, result) => {
-      if (err) return reject({ message: "DB get Failed" });
+      if (err) return reject(err);
       return resolve(result);
     })
   })
@@ -57,8 +57,8 @@ let insert = (collectionName, data) => {
   return new Promise((resolve, reject) => {
     let collection = db.collection(collectionName);
     collection.insert(data, (err, result) => {
-      if (err) return reject({ message: "DB Insert Failed" });
-      return resolve({ message: "Data Inserted" });
+      if (err) return reject(err);
+      return resolve(result);
     })
   })
 };
@@ -70,8 +70,8 @@ let update = (collectionName, query, udpateData) => {
   return new Promise((resolve, reject) => {
     let collection = db.collection(collectionName);
     collection.update(query, udpateData, (err, result) => {
-      if (err) return reject({ message: "DB update Failed" });
-      return resolve({ message: "Data updated" });
+      if (err) return reject(err);
+      return resolve(result);
     })
   })
 };
@@ -85,9 +85,8 @@ let upsert = (collectionName, query, updateData) => {
     //remove the mongoID from object data
     if (updateData._id) delete updateData._id;
     collection.update(query, updateData, { upsert: true }, (err, result) => {
-      if (err)
-        return reject({ message: "DB update Failed" });
-      return resolve({ message: "Data updated" });
+      if (err) return reject(err);
+      return resolve(result);
     })
   })
 };
@@ -97,12 +96,17 @@ let upsert = (collectionName, query, updateData) => {
 let getLastOneRecordByQuery = (collectionName, query) => {
   return new Promise((resolve, reject) => {
     let collection = db.collection(collectionName);
-    collection.find(query).sort({ timeStamp: -1 }).limit(1).toArray((err, result)=>{
-      if (err) return reject({ message: "DB get Failed" });
+    collection.find(query).sort({ timeStamp: -1 }).limit(1).toArray((err, result) => {
+      if (err) return reject(err);
       return resolve(result);
     })
   })
 }
+
+
+
+
+
 
 module.exports = {
   connectToMongoDB,

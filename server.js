@@ -29,38 +29,44 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
+app.use('/item', require('./routes/item'));
+app.use('/rawMaterial', require('./routes/rawMaterial'));
 
 
+//Error handling middleware
+app.use((err, req, res, next) => {
 
+    res.status(400).send({
+        status: err.status || 400,
+        success: false,
+        message: err.statusText || 'Bad request',
+        err: err.errors
+    })
 
-
-const user = require('./routes/user');
-app.use('/user', user);
-const item = require('./routes/item');
-app.use('/item', item);
-
-
-
-
-
+});
 
 
 //Connect to DB before starting http server
 mongoUtil.connectToMongoDB()
-.then(result=>{
+    .then(result => {
 
-    app.listen(port, () => {
-        console.log('http up on port ' + port);
-    });
+        app.listen(port, () => {
+            console.log('http up on port ' + port);
+        });
 
-    // https_server.listen(433, () => {
-    //     console.log('https up on port 433');
-    // });
-})
-.catch(err=>{
-    console.log(err);
-})
+        // https_server.listen(433, () => {
+        //     console.log('https up on port 433');
+        // });
+    })
+    .catch(err => {
+        console.log(err);
+    })
 
+
+
+
+
+module.exports = app
 
 
 
