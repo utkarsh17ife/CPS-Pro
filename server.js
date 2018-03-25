@@ -31,6 +31,8 @@ app.use(bodyParser.json());
 
 app.use('/item', require('./routes/item'));
 app.use('/rawMaterial', require('./routes/rawMaterial'));
+app.use('/vendor', require('./routes/vendor'))
+app.use('/vendRawMatMap', require('./routes/vendRawMatMap'))
 
 
 //Error handling middleware

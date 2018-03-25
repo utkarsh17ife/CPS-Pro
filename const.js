@@ -5,7 +5,9 @@ module.exports = {
     collections: {
         userCollection: "users",
         itemCollection: "items",
-        rawMaterialCollection: "rawMaterials"
+        rawMaterialCollection: "rawMaterials",
+        vendorCollection: "vendors",
+        vendRawMatMapCollection: "vendorMaterialMapping"         
     }
 };
 

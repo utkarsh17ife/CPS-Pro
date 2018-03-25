@@ -1,0 +1,53 @@
+{
+    "_id": "5aaeb4d9657d240004e5dbf5",
+    "rawMaterialId": "Pipe10001",
+    "name": "MS Pipe",
+    "type": "Pipe",
+    "unit": "meters",
+    "unitType": "length",
+    "properties": [
+        {
+            "propName": "Brand",
+            "propValues": [
+                "TATA",
+                "JINDAL",
+                "SAIL"
+            ]
+        },
+        {
+            "propName": "Dia(mm)",
+            "propValues": [
+                "20",
+                "25",
+                "40",
+                "50",
+                "65",
+                "80",
+                "100",
+                "150",
+                "200",
+                "250",
+                "300",
+                "350"
+            ]
+        },
+        {
+            "propName": "Thickness(mm)",
+            "propValues": [
+                "6",
+                "8",
+                "10",
+                "12"
+            ]
+        },
+        {
+            "propName": "Class",
+            "propValues": [
+                "A",
+                "B",
+                "C"
+            ]
+        }
+    ],
+    "timeStamp": 1521399001078
+}

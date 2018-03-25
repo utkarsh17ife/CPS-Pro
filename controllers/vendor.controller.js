@@ -1,19 +1,19 @@
-const { ItemModel } = require('../models');
+const { VendorModel } = require('../models');
 const db = require('../endpoint/db.util');
 const { collections } = require('../const');
 const _ = require('lodash');
 
-let saveItem = async (itemData) => {
+let saveVendor = async (vendorData) => {
 
-    let item;
+    let vendor;
     try {
-        item = new ItemModel(itemData);
-        await item.save();
+        vendor = new VendorModel(vendorData);
+        await vendor.save();
 
         return {
             status: 200,
             success: true,
-            message: 'New Item created'
+            message: 'New Vendor added'
         }
 
     } catch (err) {
@@ -28,33 +28,34 @@ let saveItem = async (itemData) => {
 
 }
 
-let getAll = async function () {
+let getAll = async () => {
 
-    let items;
+    let vendors;
     let rawMaterials = [];
     let rawMaterialsData;
     try {
-        items = await db.getAll(collections.itemCollection);
-        items.forEach(item => {
-            if (item.variables.length)
-                rawMaterials = rawMaterials.concat(item.variables);
+        vendors = await db.getAll(collections.vendorCollection);
+
+        vendors.forEach(vendor => {
+            if (vendor && vendor.rawMaterialsList && vendor.rawMaterialsList.length)
+                rawMaterials = rawMaterials.concat(vendor.rawMaterialsList);
         });
 
+        //get the unique values
         rawMaterials = Array.from(new Set(rawMaterials));
         rawMaterialsData = await db.getByQuery(collections.rawMaterialCollection, { rawMaterialId: { $in: rawMaterials } });
 
-        items.forEach(item => {
-            item.variableData = _.filter(rawMaterialsData, function (p) {
-                return _.includes(item.variables, p.rawMaterialId);
+        vendors.forEach(vendor => {
+            vendor.rawMaterials = _.filter(rawMaterialsData, function (p) {
+                return _.includes(vendor.rawMaterialsList, p.rawMaterialId);
             });
         })
-
 
         return {
             status: 200,
             success: true,
-            message: 'Items retrived',
-            data: items
+            message: 'Vendors retrived',
+            data: vendors
         }
     } catch (err) {
 
@@ -69,7 +70,7 @@ let getAll = async function () {
 
 
 module.exports = {
-    saveItem,
+    saveVendor,
     getAll
 }
 

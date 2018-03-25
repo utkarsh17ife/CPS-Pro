@@ -1,0 +1,9 @@
+{
+    "_id": "5ab75388699f49450e440895",
+    "vendorMaterialId": "vendor10006#Pipe10001",
+    "materialPropNameStr": "Brand#Dia(mm)#Thickness(mm)#Class",
+    "priceMap": {
+        "TATA#20#6#A": 40,
+        "JINDAL#40#10#C": 60
+    }
+}

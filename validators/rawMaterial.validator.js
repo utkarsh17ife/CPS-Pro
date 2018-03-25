@@ -7,7 +7,6 @@ let propSchmea = Joi.object({
 }).required();
 
 
-//cancel booking
 let saveRawMaterial = {
     body: {
         name: Joi.string().required(),

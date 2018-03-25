@@ -1,0 +1,14 @@
+{
+    "rawMaterialsList" : [],
+    "rawMaterials": [
+        {
+            "rawMaterialId": "Bolt10001",
+            "propertyNameString": "Brand#Dia(mm)#Thickness(mm)#Class",
+            "availableRawMaterials": [                
+
+            ]
+
+        }
+
+    ]
+}

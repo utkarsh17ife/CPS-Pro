@@ -26,7 +26,6 @@ let isConnected = () => {
 
 
 
-
 let getAll = (collectionName, cb) => {
   return new Promise((resolve, reject) => {
     let collection = db.collection(collectionName);

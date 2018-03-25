@@ -8,7 +8,7 @@ class RawMaterial {
         this.name = materialData.name;
         this.type = materialData.type;
         this.unit = materialData.unit;
-        this.unitType = materialData.unitType //1. length 2. weight 3. volume 
+        this.unitType = materialData.unitType //1. length 2. weight 3. volume 4. pieces
         this.properties = materialData.properties;
     }
 

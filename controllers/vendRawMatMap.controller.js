@@ -1,19 +1,20 @@
-const { RawMaterial } = require('../models');
+const { VendRawMatMapModel } = require('../models');
 const db = require('../endpoint/db.util');
 const { collections } = require('../const');
+const _ = require('lodash');
 
+let saveMaterialMap = async (vendorMaterialMapData) => {
 
-let saveRawMaterial = async (rawMaterialData) => {
-
-    let rawMaterial;
+    let materialMap;
     try {
-        rawMaterial = new RawMaterial(rawMaterialData);
-        await rawMaterial.save();
+        materialMap = new VendRawMatMapModel(vendorMaterialMapData);
+
+        await materialMap.save();
 
         return {
             status: 200,
             success: true,
-            message: 'New Material created'
+            message: 'New material price mapping created'
         }
 
     } catch (err) {
@@ -28,16 +29,17 @@ let saveRawMaterial = async (rawMaterialData) => {
 
 }
 
-let getAll = async () => {
+let getAll = async function () {
 
-    let rawMaterials;
+    let rawMaterialsPriceData;
     try {
-        rawMaterials = await db.getAll(collections.rawMaterialCollection);
+        rawMaterialsPriceData = await db.getAll(collections.vendRawMatMapCollection);
+
         return {
             status: 200,
             success: true,
-            message: 'Materials retrived',
-            data: rawMaterials
+            message: 'Price mappings retrived',
+            data: rawMaterialsPriceData
         }
     } catch (err) {
 
@@ -52,7 +54,7 @@ let getAll = async () => {
 
 
 module.exports = {
-    saveRawMaterial,
+    saveMaterialMap,
     getAll
 }
 
