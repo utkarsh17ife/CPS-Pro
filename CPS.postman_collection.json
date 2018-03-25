@@ -6,62 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "get item",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:3000/item",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"item"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "save item",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\" : \"pipe laying\",\n\t\"category\": \"pipe\",\n\t\"description\": \"laying of ms pipe\",\n\t\"shortDescription\": \"ms pipe lay\",\n\t\"variables\": [\"bolt10001\"]\n}"
-				},
-				"url": {
-					"raw": "http://localhost:3000/item",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"item"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "save rawMaterial",
 			"request": {
 				"method": "POST",
@@ -104,6 +48,158 @@
 					"port": "3000",
 					"path": [
 						"rawMaterial"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save item",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"pipe laying\",\n\t\"category\": \"pipe\",\n\t\"description\": \"laying of ms pipe\",\n\t\"shortDescription\": \"ms pipe lay\",\n\t\"variables\": [\"bolt10001\", \"Pipe10001\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get item",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get vendor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/vendor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vendor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post vendor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"awesomeVedn\",\n  \"address\": \"22 jump street\",\n  \"location\": {\"lat\":12341234, \"lng\": 1234234},\n  \"tin\": \"1234123iuynke\",\n  \"rawMaterialsList\": [\"bolt10001\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/vendor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vendor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get mappings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/vendRawMatMap",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vendRawMatMap"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save mappings",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"vendorMaterialId\": \"vendor10001#bolt10001\",\r\n\t\"materialPropNameStr\": \"prop1\",\r\n\t\"priceMap\": {\t\r\n\t\t\t\"nigg#poop1\": 30,\r\n\t\t\t\"nigg#poop3\": 50\r\n\t\t\t}\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/vendRawMatMap",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"vendRawMatMap"
 					]
 				}
 			},
